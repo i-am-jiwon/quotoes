@@ -31,8 +31,8 @@ class order{
                 String order2 = sc.nextLine();
                 System.out.print("작가 : ");
                 String order3 = sc.nextLine();
-
-                System.out.println("1번 명언이 등록되었습니다.");
+                count++;
+                System.out.println(count + "번 명언이 등록되었습니다.");
             }
         }
     }
