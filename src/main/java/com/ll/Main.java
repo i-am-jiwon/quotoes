@@ -47,8 +47,8 @@ class order{
                 String order3 = sc.nextLine();
                 count++;
                 listNum.add(count);
-                names.add(order2);
-                words.add(order3);
+                names.add(order3);
+                words.add(order2);
                 System.out.println(count + "번 명언이 등록되었습니다.");
             }
             if (order.equals("목록")){
@@ -67,6 +67,21 @@ class order{
                 }else {
                     listNum.set(indexId - 1, 0);
                     System.out.println(id + "번 명언이 삭제되었습니다.");
+                }
+            }
+
+            if(delete.equals("수정")){
+                id = order.substring(6);
+                indexId = Integer.parseInt(id);
+                if(listNum.get(indexId-1) == 0) {
+                    System.out.println(id + "번 명언은 존재하지 않습니다.");
+                }else {
+                    System.out.println("명언(기존) : " + words.get(indexId-1) );
+                    System.out.print("명언 : ");
+                    words.set(indexId-1,sc.nextLine());
+                    System.out.println("작가(기존) : " + names.get(indexId-1) );
+                    System.out.print("작가 : ");
+                    names.set(indexId-1,sc.nextLine());
                 }
             }
 
