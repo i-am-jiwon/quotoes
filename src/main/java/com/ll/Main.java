@@ -18,6 +18,7 @@ public class Main {
 
 class order{
     int cond = 0;
+    int count =0;
     void orderRun() {
         while(cond == 0) {
             System.out.print("명령) ");
@@ -30,6 +31,8 @@ class order{
                 String order2 = sc.nextLine();
                 System.out.print("작가 : ");
                 String order3 = sc.nextLine();
+
+                System.out.println("1번 명언이 등록되었습니다.");
             }
         }
     }
