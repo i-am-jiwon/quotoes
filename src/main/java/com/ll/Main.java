@@ -1,10 +1,9 @@
 package com.ll;
 
 
-import java.sql.Array;
-import java.util.Scanner;
-
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 
@@ -31,13 +30,58 @@ class order{
     String id;
     int indexId;
 
+    File file = new File("list.txt");
+    FileWriter writer = null;
+
     void orderRun() {
+
+
+
+        File read = new File("list.txt");
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(read));
+            String[] str = br.readLine().split("/");
+            while(str != null){
+                listNum.add(Integer.parseInt(str[0]));
+                names.add(str[1]);
+                words.add(str[2]);
+                str = br.readLine().split("/");
+            }
+
+        }catch(NullPointerException e) {
+            e.getStackTrace();
+        }catch (FileNotFoundException e){
+            e.getStackTrace();
+        }catch (IOException e){
+            e.getStackTrace();
+        }
+
+
         while(cond == 0) {
             System.out.print("명령) ");
             Scanner sc = new Scanner(System.in);
             String order = sc.nextLine();
             delete = order.substring(0,2);
             if (order.equals("종료")) {
+
+                String message = "";
+                for(int i = 0; i < listNum.size(); i++){
+                    message = message.concat(listNum.get(i)+ "/" + names.get(i)+"/" +words.get(i) + "\n");
+                }
+
+               try {
+                   writer = new FileWriter(file, false);
+                   writer.write(message);
+                   writer.flush();
+               } catch (IOException e){
+                   e.printStackTrace();;
+               }finally {
+                   try{
+                       if(writer != null) writer.close();
+                   }catch (IOException e){
+                       e.printStackTrace();
+                   }
+               }
                 cond = 1;
             }
             if (order.equals("등록")) {
